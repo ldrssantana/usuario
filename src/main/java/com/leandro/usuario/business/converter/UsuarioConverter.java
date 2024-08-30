@@ -129,6 +129,26 @@ public class UsuarioConverter {
                 .build();
     }
 
+    public Endereco paraEnderecoEntity(EnderecoDTO dto , Long idUsuario ){
+        return Endereco.builder()
+                .rua(dto.getRua())
+                .cidade(dto.getCidade())
+                .cep(dto.getCep())
+                .complemento(dto.getComplemento())
+                .estado(dto.getEstado())
+                .numero(dto.getNumero())
+                .usuario_id(idUsuario)
+                .build();
+    }
+
+    //Nesse caso não passamos o ID, pois o mesmo é gerado automaticamente quando geramos um novo no BD.
+    public Telefone paraTelefoneEntity(TelefoneDTO dto, Long idUsuario ){
+        return Telefone.builder()
+                .ddd(dto.getDdd())
+                .numero(dto.getNumero())
+                .usuario_id(idUsuario)
+                .build();
+    }
 
 
 }

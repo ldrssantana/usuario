@@ -2,8 +2,9 @@ package com.leandro.usuario.controller;
 
 
 import com.leandro.usuario.business.UsuarioService;
+import com.leandro.usuario.business.dto.EnderecoDTO;
+import com.leandro.usuario.business.dto.TelefoneDTO;
 import com.leandro.usuario.business.dto.UsuarioDTO;
-import com.leandro.usuario.infrastructure.entity.Usuario;
 import com.leandro.usuario.infrastructure.repository.UsuarioRepository;
 import com.leandro.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscarUsuarioPorEmail(@RequestParam("email") String email){
+    public ResponseEntity<UsuarioDTO> buscarUsuarioPorEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
     }
 
@@ -57,6 +58,18 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
 
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO dto,
+                                                        @RequestParam("id") Long id){
 
+        return ResponseEntity.ok(usuarioService.atualizaEndereco(id, dto));
+    }
+
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO dto,
+                                                        @RequestParam("id") Long id){
+
+        return ResponseEntity.ok(usuarioService.atualizaTelefone(id, dto));
+    }
 
 }

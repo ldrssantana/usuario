@@ -7,6 +7,9 @@ import com.leandro.usuario.business.dto.TelefoneDTO;
 import com.leandro.usuario.business.dto.UsuarioDTO;
 import com.leandro.usuario.infrastructure.repository.UsuarioRepository;
 import com.leandro.usuario.infrastructure.security.JwtUtil;
+import com.leandro.usuario.infrastructure.security.SecurityConfig;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/usuario")
 @RequiredArgsConstructor
+@Tag(name = "Tarefas", description = "Cadastro  tarefas de usuários") //Aqui como exemplo só criei uma, mas podemos criar para as demais
+@SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

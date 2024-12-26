@@ -120,6 +120,7 @@ public class UsuarioService {
      public TelefoneDTO cadastrarTelefone(String token , TelefoneDTO dto){
 
           String email = jwtUtil.extrairEmailToken(token.substring(7));
+
           Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() ->
                   new ResourceNotFoundException("Email não localizado " + email));
 
